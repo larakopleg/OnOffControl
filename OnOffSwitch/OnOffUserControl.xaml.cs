@@ -34,7 +34,11 @@ namespace OnOffSwitch
         public OnOffUserControl()
         {
             InitializeComponent();
+            text();
+        }
 
+        private void text()
+        {
             if (IsOn == true)
             {
                 OffButton.Background = Brushes.Red;
@@ -45,6 +49,13 @@ namespace OnOffSwitch
                 OnButton.Background = Brushes.Green;
                 OnButton.Content = "ON";
             }
+        }
+
+
+        private void lessThan48()
+        {
+            OffButton.Content = "";
+            OnButton.Content = "";
         }
 
         private void On_Click(object sender, RoutedEventArgs e)
@@ -64,12 +75,6 @@ namespace OnOffSwitch
             
         }
 
-        private void lessThan48()
-        {
-            OffButton.Content = "";
-            OnButton.Content = "";
-        }
-
         private void Off_Click(object sender, RoutedEventArgs e)
         {
             IsOn = false;
@@ -87,17 +92,14 @@ namespace OnOffSwitch
             
         }
 
-        //private void off()
-        //{
-
-        //}
-
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (ActualWidth < 48 && ActualHeight < 48)
             {
                 lessThan48();
             }
+            else
+                text();
         }
     }
 }
