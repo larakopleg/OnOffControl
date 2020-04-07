@@ -8,6 +8,6 @@
         Title="MainWindow" Height="450" Width="800" SizeChanged="Window_SizeChanged">
 
     <Grid>
-        <local:OnOffUserControl x:Name="OnOffUserControl" IsOn="{Binding Path=Value, Mode=TwoWay}" Margin="272,82,220,211" Height="Auto" Width="Auto"/>
+        <local:OnOffUserControl x:Name="OnOffUserControl" Value="False" Margin="272,82,220,211" Height="Auto" Width="Auto"/>
     </Grid>
 </Window>

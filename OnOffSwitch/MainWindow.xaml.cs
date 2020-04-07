@@ -1,4 +1,4 @@
-﻿using OnOffSwitch.Model;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +22,9 @@ namespace OnOffSwitch
     public partial class MainWindow : Window
     {
         private Thickness originalMargin;
-        OnOffData onOffData = new OnOffData(false);
 
         public MainWindow()
         {
-            
-            this.DataContext = onOffData;
-
             InitializeComponent();
             
             originalMargin = OnOffUserControl.Margin;

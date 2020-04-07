@@ -75,7 +75,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\OnOffData.cs" />
     <Compile Include="OnOffUserControl.xaml.cs">
       <DependentUpon>OnOffUserControl.xaml</DependentUpon>
     </Compile>

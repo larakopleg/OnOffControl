@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Lara\source\repos\OnOffSwitch\OnOffSwitch\obj\Debug\
+L:\GitFolders\OnOffControl\OnOffSwitch\obj\Debug\
 OnOffSwitch
 none
 false
 DEBUG;TRACE
-C:\Users\Lara\source\repos\OnOffSwitch\OnOffSwitch\App.xaml
+L:\GitFolders\OnOffControl\OnOffSwitch\App.xaml
 2-1295202972
 
-13-1429440038
+12374478684
 131569487696
 MainWindow.xaml;OnOffUserControl.xaml;
 
-True
+False
 

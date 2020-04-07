@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,32 +21,46 @@ namespace OnOffSwitch
     /// </summary>
     public partial class OnOffUserControl : UserControl
     {
-        public Boolean IsOn
+        public Boolean Value
         {
-            get { return (Boolean)GetValue(IsOnProperty); }
-            set { SetValue(IsOnProperty, value); }
+            get { return (Boolean)GetValue(ValueProperty); }
+            set
+            {
+                SetValue(ValueProperty, value);
+            }
         }
 
         // Using a DependencyProperty as the backing store for IsOn.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty IsOnProperty =
-            DependencyProperty.Register("IsOn", typeof(Boolean), typeof(OnOffUserControl), new UIPropertyMetadata(false));
-
+        public static readonly DependencyProperty ValueProperty =
+            DependencyProperty.Register("Value", typeof(Boolean), typeof(OnOffUserControl), new PropertyMetadata(false, new PropertyChangedCallback(OnValueChanged)));
 
         public OnOffUserControl()
         {
             InitializeComponent();
-            text();
         }
 
-        private void text()
+        private static void OnValueChanged(DependencyObject d,
+         DependencyPropertyChangedEventArgs e)
         {
-            if (IsOn == true)
+            OnOffUserControl uc = (OnOffUserControl) d;
+            uc.text((bool)e.NewValue);
+        }
+        
+        private void text(bool isTrue)
+        {
+            if (isTrue)
             {
+                Value = true;
+                OnButton.Background = Brushes.Gray;
+                OnButton.Content = "";
                 OffButton.Background = Brushes.Red;
                 OffButton.Content = "OFF";
             }
             else
             {
+                Value = false;
+                OffButton.Background = Brushes.Gray;
+                OffButton.Content = "";
                 OnButton.Background = Brushes.Green;
                 OnButton.Content = "ON";
             }
@@ -60,34 +75,26 @@ namespace OnOffSwitch
 
         private void On_Click(object sender, RoutedEventArgs e)
         {
-            IsOn = true;
-            OffButton.Background = Brushes.Red;
-            OnButton.Background = Brushes.Gray;
-            if(ActualHeight < 48 && ActualWidth < 48)
+            if (ActualHeight < 48 && ActualWidth < 48)
             {
                 lessThan48();
             }
             else
             {
-                OffButton.Content = "OFF";
-                OnButton.Content = "";
+                text(true);
             }
             
         }
 
         private void Off_Click(object sender, RoutedEventArgs e)
         {
-            IsOn = false;
-            OnButton.Background = Brushes.Green;
-            OffButton.Background = Brushes.Gray;
             if(ActualWidth < 48 && ActualHeight < 48)
             {
                 lessThan48();
             }
             else
             {
-                OnButton.Content = "ON";
-                OffButton.Content = "";
+                text(false);
             }
             
         }
@@ -99,7 +106,7 @@ namespace OnOffSwitch
                 lessThan48();
             }
             else
-                text();
+                text(Value);
         }
     }
 }
